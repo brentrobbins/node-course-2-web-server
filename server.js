@@ -1,6 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
+// Setup the port for heroku
+const port = process.env.PORT || 3000;
 // start express
 var app = express();
 
@@ -44,14 +47,6 @@ app.get('/', (req, res) => {
         pageTitle: 'Home Page',
         welcomeMessage: 'Hello World'
     });
-    // res.send({
-    //     name: 'Brent Robbins',
-    //     age: 38,
-    //     likes: [
-    //         'hockey',
-    //         'cars'
-    //     ]
-    // });
 });
 
 app.get('/about', (req, res) => {
@@ -60,13 +55,6 @@ app.get('/about', (req, res) => {
         pageTitle: 'About Page'
     });
 });
-
-// app.get('/maintenance', (req, res) => {
-//     //res.send('About page');
-//     res.render('maintenance.hbs', {
-//         pageTitle: 'Maintenance'
-//     });
-// });
 
 
 
@@ -77,6 +65,6 @@ app.get('/bad', (req, res) => {
 });
 
 // bind the app to a port
-app.listen(3000, () => {
-    console.log('Server is up on port 3000');
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
